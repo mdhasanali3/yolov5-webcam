@@ -45,14 +45,7 @@ const liveView = document.getElementById('liveView');
 const demosSection = document.getElementById('demos');
 const enableWebcamButton = document.getElementById('webcamButton');
 //const floc=document.getElementById('locals');
-/*
-function Fcall() {
- //  videoRef = React.createRef();
-   //canvasRef = React.createRef();
-   const videoRef = useRef(null);
-  const canvasRef = useRef(null);
-  return;
-}*/
+
 
 // async function load_model() {
 //   // It's possible to load the model locally or from a repo
@@ -66,7 +59,7 @@ function Fcall() {
 
 class App extends React.Component {
 
-  
+
   
    videoRef = React.createRef();
    canvasRef = React.createRef();
@@ -77,11 +70,7 @@ class App extends React.Component {
   };
  
  componentDidMount() { 
-   // getData();
-    //const weights =await geata();
-  //  const weights = await fetch('C:/Users/hasan/Downloads/bs 23 workshop/ss/tfj/public/web_model/model.json');
-  // const videoRef = useRef(null);
-  // const canvasRef = useRef(null);
+
     tf.loadGraphModel(weights).then(model => {
       this.setState({
         model: model
@@ -147,46 +136,7 @@ function getUserMediaSupported() {
       }
     
     })
-// Check if webcam access is supported.
-// function getUserMediaSupported() {
-//   return !!(navigator.mediaDevices &&
-//     navigator.mediaDevices.getUserMedia);
-// }
 
-// If webcam supported, add event listener to button for when user
-// wants to activate it to call enableCam function which we will 
-// define in the next step.
-// if (getUserMediaSupported()) {
-//   enableWebcamButton.addEventListener('click', enableCam);
-// } else {
-//   console.warn('getUserMedia() is not supported by your browser');
-// }
-
-// Placeholder function for next step. Paste over this in the next step.
-// Enable the live webcam view and start classification.
-// function enableCam(event) {
-//   // Only continue if the COCO-SSD has finished loading.
-//   if (!model) {
-//     return;
-//   }
-  
-  // Hide the button once clicked.
-//  event.target.classList.add('removed');  
-  
-  // getUsermedia parameters to force video but not audio.
-  // const constraints = {
-  //   video: true
-  // };
-
-  // // Activate the webcam stream.
-  // navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
-  //   video.srcObject = stream;
-  //   video.addEventListener('loadeddata', this.detectFrame(this.videoRef.current, model));
-  // });
-//}
-
-//demosSection.classList.remove('invisible');
-  
   }
 
 
@@ -240,11 +190,6 @@ const [boxes, scores, classes, valid_detections] = predictions;
       
       for (i = 0; i < valid_detections_data; ++i){
         let [x1, y1, x2, y2] = boxes_data.slice(i * 4, (i + 1) * 4);
-        // x1 *= c.width;
-        // x2 *= c.width;
-        // y1 *= c.height;
-        // y2 *= c.height;
-
         x1 *= c.width;
         x2 *= c.width;
         y1 *= c.height;
@@ -415,7 +360,7 @@ return (
         
         <h3>yoloV5</h3>
         <video
-          style={{height: '640px', width: "640px"}}
+          style={{height: "640", width:"640"}}
           className="size"
           autoPlay
           playsInline
@@ -424,13 +369,17 @@ return (
           width="640"
           height="640"
           id="frame"
-        />
-        <canvas id="web"
+   
+   />
+   
+
+   <canvas id="web"
           className="size"
           ref={this.canvasRef}
           width="640"
-          height="640"
-        />
+          height="640"       />
+
+
       </div>
 
 
