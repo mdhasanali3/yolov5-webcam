@@ -1,14 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import MagicDropzone from "react-magic-dropzone";
-import { useRef, useState, useEffect } from "react";
+//import { useRef, useState, useEffect } from "react";
 import "./styles.css";
-import Webcam from "react-webcam";
+//import Webcam from "react-webcam";
 
 const tf = require('@tensorflow/tfjs');
 //const webcamElement = document.getElementById('webcam');
     
  const weights = "https://raw.githubusercontent.com/mdhasanali3/object-detection-with-yolov5-tfjs/master/public/web_model/model.json";
+
+ //"https://raw.githubusercontent.com/mdhasanali3/yolov5-webcam/main/public/product_detector_16batch_110epoch_model/model.json";
+ //"https://raw.githubusercontent.com/mdhasanali3/object-detection-with-yolov5-tfjs/master/public/web_model/model.json";
  //'web_model/model.json';
  
   //'C:/Users/hasan/Downloads/bs 23 workshop/supershop/yolov5/yolov5s_saved_model/keras_metadata.pb');
@@ -20,8 +23,8 @@ const tf = require('@tensorflow/tfjs');
               'Arla-Sour-Milk','Bravo-Orange-Juice','Garant-Ecological-Medium-Fat-Milk','Oatly-Natural-Oatghurt',
               'Oatly-Oat-Milk','Tropicana-Apple-Juice','Valio-Vanilla-Yoghurt','Yoggi-Strawberry-Yoghurt',
 
-*/
-const names = ['person','bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
+
+              'person','bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
                'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
                'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
                'skis', 'snowboard', 'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard',
@@ -29,10 +32,22 @@ const names = ['person','bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'trai
                'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch',
                'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone',
                'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors', 'teddy bear',
-               'hair drier', 'toothbrush']
+               'hair drier', 'toothbrush'
+*/
+// var names =JSON.stringify('names_.json');
+
+//  console.log(names)
+// var names=await fetch('names_.json') ;
+// //names=req.names[0]
+// console.log(names)
+ 
+fetch("https://raw.githubusercontent.com/mdhasanali3/yolov5-webcam/main/src/names.json")
+  .then(response => response.json())
+  .then(names[] => console.log(names.names));
+
 const map = new Map();
 
-for (var i = 0; i < 100; ++i) {
+for (var i = 0; i < names; ++i) {
   map.set(names[i],0);
 }
 const [modelWeight, modelHeight] = [640 , 640];
@@ -41,9 +56,9 @@ const [modelWeight, modelHeight] = [640 , 640];
 
 const threshold = 0.35;
 //const video = document.getElementById('webcam');
-const liveView = document.getElementById('liveView');
-const demosSection = document.getElementById('demos');
-const enableWebcamButton = document.getElementById('webcamButton');
+// const liveView = document.getElementById('liveView');
+// const demosSection = document.getElementById('demos');
+// const enableWebcamButton = document.getElementById('webcamButton');
 //const floc=document.getElementById('locals');
 
 
@@ -59,6 +74,9 @@ const enableWebcamButton = document.getElementById('webcamButton');
 
 class App extends React.Component {
 
+  
+                   
+
 
   
    videoRef = React.createRef();
@@ -68,19 +86,20 @@ class App extends React.Component {
     preview: "",
     predictions: []
   };
- 
+  
  componentDidMount() { 
 
     tf.loadGraphModel(weights).then(model => {
       this.setState({
         model: model
+        
       });
-      
+    
    //Check if webcam access is supported.
-function getUserMediaSupported() {
-  return !!(navigator.mediaDevices &&
-    navigator.mediaDevices.getUserMedia);
-}
+// function getUserMediaSupported() {
+//   return !!(navigator.mediaDevices &&
+//     navigator.mediaDevices.getUserMedia);
+// }
 
 //If webcam supported, add event listener to button for when user
 //wants to activate it to call enableCam function which we will 
@@ -103,6 +122,9 @@ function getUserMediaSupported() {
  //event.target.classList.add('removed');  
   
   //getUsermedia parameters to force video but not audio.
+  
+  
+    
   
 
       if (navigator.mediaDevices 
@@ -345,15 +367,12 @@ const [boxes, scores, classes, valid_detections] = predictions;
      
     });
   };
-
+//getname=()=>
   render() {
-return ( 
+return (  
 
   //floc.addEventListener('loadeddata', 
 <>     
-
-
-
 
 
 <div>
