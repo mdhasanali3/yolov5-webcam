@@ -1,3 +1,1 @@
-{"names": 
-    ["coca cola"],
-     "nc": 1, "train": "coke-1/train/images", "val": "coke-1/valid/images"}
+{"names": ["pa1", "pa2", "pa3"], "nc": 3, "train": "product-3/train/images", "val": "product-3/valid/images"}
