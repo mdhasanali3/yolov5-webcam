@@ -1,1 +1,1 @@
-{"names": ["pa1", "pa2", "pa3"], "nc": 3, "train": "pro2-1/train/images", "val": "pro2-1/valid/images"}
+{"names": ["pa1", "pa2", "pa3"], "nc": 3, "train": "pro1-1/train/images", "val": "pro1-1/valid/images"}
