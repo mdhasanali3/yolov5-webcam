@@ -3,16 +3,19 @@ import ReactDOM from "react-dom";
 import MagicDropzone from "react-magic-dropzone";
 //import { useRef, useState, useEffect } from "react";
 import "./styles.css";
+import "./names_class.json";
 //import Webcam from "react-webcam";
 
 const tf = require('@tensorflow/tfjs');
 //const webcamElement = document.getElementById('webcam');
     
- const weights = "https://raw.githubusercontent.com/mdhasanali3/object-detection-with-yolov5-tfjs/master/public/web_model/model.json";
-
- //"https://raw.githubusercontent.com/mdhasanali3/yolov5-webcam/main/public/product_detector_16batch_110epoch_model/model.json";
- //"https://raw.githubusercontent.com/mdhasanali3/object-detection-with-yolov5-tfjs/master/public/web_model/model.json";
- //'web_model/model.json';
+ const weights ="https://raw.githubusercontent.com/mdhasanali3/yolov5-webcam/main/public/best_web_model/model.json";
+var i;
+ // yolov5n32b60e/
+ // https://raw.githubusercontent.com/mdhasanali3/yolov5-webcam/main/public/best_web_model/model.json
+ // "https://raw.githubusercontent.com/mdhasanali3/yolov5-webcam/main/public/product_detector_16batch_110epoch_model/model.json";
+ // "https://raw.githubusercontent.com/mdhasanali3/object-detection-with-yolov5-tfjs/master/public/web_model/model.json";
+ // 'web_model/model.json';
  
   //'C:/Users/hasan/Downloads/bs 23 workshop/supershop/yolov5/yolov5s_saved_model/keras_metadata.pb');
 //'C:/Users/hasan/Downloads/bs 23 workshop/ss/tfj/public/web_model/model.json';
@@ -34,27 +37,28 @@ const tf = require('@tensorflow/tfjs');
                'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors', 'teddy bear',
                'hair drier', 'toothbrush'
 */
-// var names =JSON.stringify('names_.json');
 
-//  console.log(names)
-// var names=await fetch('names_.json') ;
-// //names=req.names[0]
-// console.log(names)
- 
-fetch("https://raw.githubusercontent.com/mdhasanali3/yolov5-webcam/main/src/names.json")
-  .then(response => response.json())
-  .then(names[] => console.log(names.names));
+
+const jsonData= require('./names_class.json'); 
+//console.log(jsonData.names);
+
+const names=[]
+for (i = 0; i<jsonData.names.length; ++i) {
+  names.push(jsonData.names[i]);
+}
+
 
 const map = new Map();
-
-for (var i = 0; i < names; ++i) {
+  
+for (i = 0; i < names.length; ++i) {
   map.set(names[i],0);
+  console.log(names[i])
 }
-const [modelWeight, modelHeight] = [640 , 640];
+const [modelWeight, modelHeight] = [416 , 416];
 
 /////for video
 
-const threshold = 0.35;
+//const threshold = 0.35;
 //const video = document.getElementById('webcam');
 // const liveView = document.getElementById('liveView');
 // const demosSection = document.getElementById('demos');
@@ -62,24 +66,9 @@ const threshold = 0.35;
 //const floc=document.getElementById('locals');
 
 
-// async function load_model() {
-//   // It's possible to load the model locally or from a repo
-//   // You can choose whatever IP and PORT you want in the "http://127.0.0.1:8080/model.json" just set it before in your https server
-//   //const model = await loadGraphModel("http://127.0.0.1:8080/model.json");
-//   const model = await tf.loadGraphModel("https://raw.githubusercontent.com/mdhasanali3/object-detection-with-yolov5-tfjs/master/public/web_model/model.json");
-
-//   return model;
-// }
-
-
 class App extends React.Component {
 
-  
-                   
-
-
-  
-   videoRef = React.createRef();
+  videoRef = React.createRef();
    canvasRef = React.createRef();
   state = {
     model: null,
@@ -95,35 +84,6 @@ class App extends React.Component {
         
       });
     
-   //Check if webcam access is supported.
-// function getUserMediaSupported() {
-//   return !!(navigator.mediaDevices &&
-//     navigator.mediaDevices.getUserMedia);
-// }
-
-//If webcam supported, add event listener to button for when user
-//wants to activate it to call enableCam function which we will 
-//define in the next step.
-// if (getUserMediaSupported()) {
-//   enableWebcamButton.addEventListener('click', enableCam);
-// } else {
-//   console.warn('getUserMedia() is not supported by your browser');
-// }
-
-//Placeholder function for next step. Paste over this in the next step.
-// //Enable the live webcam view and start classification.
-// function enableCam(event) {
-//   // Only continue if the COCO-SSD has finished loading.
-//   if (!model) {
-//     return;
-//   }
-  
-  //Hide the button once clicked.
- //event.target.classList.add('removed');  
-  
-  //getUsermedia parameters to force video but not audio.
-  
-  
     
   
 
@@ -389,7 +349,7 @@ return (
           height="640"
           id="frame"
    
-   />
+           />
    
 
    <canvas id="web"
